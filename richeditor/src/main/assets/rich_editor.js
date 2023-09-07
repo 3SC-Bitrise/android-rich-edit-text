@@ -363,17 +363,6 @@ RE.editor.addEventListener("click", RE.enabledEditingItems);
 RE.editor.addEventListener("keydown", function(e) {
   // Check if the Enter key (key code 13) is pressed
   if (e.keyCode === 13) {
-    e.preventDefault(); // Prevent the default behavior of creating a new paragraph
-
-    // Insert a newline character '\n' at the current selection or cursor position
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    var newline = document.createTextNode('\n');
-    range.insertNode(newline);
-    range.setStartAfter(newline);
-    range.setEndAfter(newline);
-    selection.removeAllRanges();
-    selection.addRange(range);
 
     // Ensure that enabled formatting options are retained (bold, italic, etc.)
     // Here, you can check the current formatting options and apply them if needed.
