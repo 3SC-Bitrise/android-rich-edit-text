@@ -386,7 +386,11 @@ RE.editor.addEventListener("keydown", function(e) {
     }
     if (document.queryCommandState('underline')) {
           document.execCommand('underline', false, null);
-        }
+    }
+    if (document.queryCommandState('insertUnorderedList')) {
+              document.execCommand('insertUnorderedList', false, null);
+    }
+
     // Add more formatting options as needed.
 
     // Notify any listeners that the content has changed
