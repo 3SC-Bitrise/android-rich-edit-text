@@ -33,6 +33,7 @@ document.addEventListener("selectionchange", function() { RE.backuprange(); });
 // Initializations
 RE.callback = function() {
     window.location.href = "re-callback://" + encodeURIComponent(RE.getHtml());
+    RE.enabledEditingItems()
 }
 
 RE.setHtml = function(contents) {
@@ -104,26 +105,32 @@ RE.redo = function() {
 
 RE.setBold = function() {
     document.execCommand('bold', false, null);
+    RE.enabledEditingItems();
 }
 
 RE.setItalic = function() {
     document.execCommand('italic', false, null);
+    RE.enabledEditingItems();
 }
 
 RE.setSubscript = function() {
     document.execCommand('subscript', false, null);
+    RE.enabledEditingItems();
 }
 
 RE.setSuperscript = function() {
     document.execCommand('superscript', false, null);
+    RE.enabledEditingItems();
 }
 
 RE.setStrikeThrough = function() {
     document.execCommand('strikeThrough', false, null);
+    RE.enabledEditingItems();
 }
 
 RE.setUnderline = function() {
     document.execCommand('underline', false, null);
+    RE.enabledEditingItems();
 }
 
 RE.setBullets = function() {
@@ -359,51 +366,3 @@ RE.editor.addEventListener("keyup", function(e) {
     }
 });
 RE.editor.addEventListener("click", RE.enabledEditingItems);
-
-/*RE.editor.addEventListener("keydown", function(e) {
-  // Check if the Enter key (key code 13) is pressed
-  if (e.keyCode === 13) {
-    e.preventDefault(); // Prevent the default behavior of creating a new paragraph
-
-    var boldState = document.queryCommandState('bold');
-    var italicState = document.queryCommandState('italic');
-    var underlineState = document.queryCommandState('underline');
-    var listState = document.queryCommandState('insertUnorderedList');
-
-    var newline = document.createElement("br");
-
-        // Insert the newline character at the current selection or cursor position
-        var selection = window.getSelection();
-        var range = selection.getRangeAt(0);
-        range.insertNode(newline);
-
-        // Move the cursor position after the newline character
-        range.setStartAfter(newline);
-        range.setEndAfter(newline);
-
-        // Remove any existing selections and set the new range
-        selection.removeAllRanges();
-        selection.addRange(range);
-
-    // Ensure that enabled formatting options are retained (bold, italic, etc.)
-    // Here, you can check the current formatting options and apply them if needed.
-    // For example, you can reapply bold and italic styles:
-    if (boldState) {
-      document.execCommand('bold', false, null);
-    }
-    if (italicState) {
-      document.execCommand('italic', false, null);
-    }
-    if (underlineState) {
-          document.execCommand('underline', false, null);
-    }
-    if (listState) {
-         document.execCommand('insertUnorderedList', false, null);
-    }
-
-    // Add more formatting options as needed.
-
-    // Notify any listeners that the content has changed
-    RE.callback();
-  }
-});*/
