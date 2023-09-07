@@ -363,6 +363,22 @@ RE.editor.addEventListener("click", RE.enabledEditingItems);
 RE.editor.addEventListener("keydown", function(e) {
   // Check if the Enter key (key code 13) is pressed
   if (e.keyCode === 13) {
+    e.preventDefault(); // Prevent the default behavior of creating a new paragraph
+
+    var newline = document.createElement("br");
+
+        // Insert the newline character at the current selection or cursor position
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        range.insertNode(newline);
+
+        // Move the cursor position after the newline character
+        range.setStartAfter(newline);
+        range.setEndAfter(newline);
+
+        // Remove any existing selections and set the new range
+        selection.removeAllRanges();
+        selection.addRange(range);
 
     // Ensure that enabled formatting options are retained (bold, italic, etc.)
     // Here, you can check the current formatting options and apply them if needed.
@@ -377,7 +393,7 @@ RE.editor.addEventListener("keydown", function(e) {
           document.execCommand('underline', false, null);
     }
     if (document.queryCommandState('insertUnorderedList')) {
-              document.execCommand('insertUnorderedList', false, null);
+         document.execCommand('insertUnorderedList', false, null);
     }
 
     // Add more formatting options as needed.
