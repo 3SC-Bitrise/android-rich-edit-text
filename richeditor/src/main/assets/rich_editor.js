@@ -381,10 +381,14 @@ RE.editor.addEventListener("keydown", function(e) {
         range.setStartAfter(newline);
         range.setEndAfter(newline);
 
+        // Remove any existing selections and set the new range
+        selection.removeAllRanges();
+        selection.addRange(range);
+
     // Ensure that enabled formatting options are retained (bold, italic, etc.)
     // Here, you can check the current formatting options and apply them if needed.
     // For example, you can reapply bold and italic styles:
-    /*if (boldState) {
+    if (boldState) {
       document.execCommand('bold', false, null);
     }
     if (italicState) {
@@ -395,7 +399,7 @@ RE.editor.addEventListener("keydown", function(e) {
     }
     if (listState) {
          document.execCommand('insertUnorderedList', false, null);
-    }*/
+    }
 
     // Add more formatting options as needed.
 
