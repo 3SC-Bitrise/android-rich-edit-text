@@ -360,7 +360,7 @@ RE.editor.addEventListener("keyup", function(e) {
 });
 RE.editor.addEventListener("click", RE.enabledEditingItems);
 
-RE.editor.addEventListener("keydown", function(e) {
+/*RE.editor.addEventListener("keydown", function(e) {
   // Check if the Enter key (key code 13) is pressed
   if (e.keyCode === 13) {
     e.preventDefault(); // Prevent the default behavior of creating a new paragraph
@@ -406,4 +406,4 @@ RE.editor.addEventListener("keydown", function(e) {
     // Notify any listeners that the content has changed
     RE.callback();
   }
-});
+});*/
