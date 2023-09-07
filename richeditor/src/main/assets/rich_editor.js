@@ -365,6 +365,11 @@ RE.editor.addEventListener("keydown", function(e) {
   if (e.keyCode === 13) {
     e.preventDefault(); // Prevent the default behavior of creating a new paragraph
 
+    var boldState = document.queryCommandState('bold');
+    var italicState = document.queryCommandState('italic');
+    var underlineState = document.queryCommandState('underline');
+    var listState = document.queryCommandState('insertUnorderedList');
+
     var newline = document.createElement("br");
 
         // Insert the newline character at the current selection or cursor position
@@ -376,25 +381,21 @@ RE.editor.addEventListener("keydown", function(e) {
         range.setStartAfter(newline);
         range.setEndAfter(newline);
 
-        // Remove any existing selections and set the new range
-        selection.removeAllRanges();
-        selection.addRange(range);
-
     // Ensure that enabled formatting options are retained (bold, italic, etc.)
     // Here, you can check the current formatting options and apply them if needed.
     // For example, you can reapply bold and italic styles:
-    if (document.queryCommandState('bold')) {
+    /*if (boldState) {
       document.execCommand('bold', false, null);
     }
-    if (document.queryCommandState('italic')) {
+    if (italicState) {
       document.execCommand('italic', false, null);
     }
-    if (document.queryCommandState('underline')) {
+    if (underlineState) {
           document.execCommand('underline', false, null);
     }
-    if (document.queryCommandState('insertUnorderedList')) {
+    if (listState) {
          document.execCommand('insertUnorderedList', false, null);
-    }
+    }*/
 
     // Add more formatting options as needed.
 
